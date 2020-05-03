@@ -143,7 +143,20 @@ function reply(label, className, content){
     var img = document.createElement('img');
     img.src = 'robot.jpg';
     var span = document.createElement('span');
+    var spanDate = document.createElement('span');
     var p = document.createElement('p');
+    spanDate.setAttribute('class', 'date');
+
+    //转化为当地时间
+    var time = new Date();
+    var localTime = time.toLocaleTimeString();
+    if(localTime.slice(0, 2) == '上午'){
+        localTime = localTime.slice(2, -3) + ' AM';
+    }else{
+        localTime = localTime.slice(2, -3) + ' PM';
+    }
+
+    spanDate.textContent = localTime;
 
     switch(label){
         case '1':
@@ -180,6 +193,7 @@ function reply(label, className, content){
 
     div.appendChild(img);
     div.appendChild(span);
+    div.appendChild(spanDate);
     div.appendChild(p);
 
     return div;
